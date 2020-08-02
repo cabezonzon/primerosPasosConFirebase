@@ -1,0 +1,1 @@
+$env:GOOGLE_APPLICATION_CREDENTIALS="C:\Users\Matia\OneDrive\Desktop\Matias\firebaseDatabase-node\node-firebase-ejemplo-62e23-firebase-adminsdk-vx91t-d3a4e458fe.json"

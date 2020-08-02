@@ -1,0 +1,155 @@
+<div class="col-md-6 offset-md-3">
+    <!-- navegacion -->
+<nav id="u1" class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#signinModal">Signin</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#signupModal">SignUp</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="logout" href="/logout">LogOut</a>
+      </li>   
+    </ul>
+  </div>
+</nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container p-4">
+      <div class="row">
+        <div class="col-md-6 offset-md-3"></div>
+          <ul class="list-group posts">
+            {{#if information}}
+                <ul class="list-group">
+                    {{#each information}}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{title}}
+                            {{description}} /                                       
+                        </li>
+                    {{/each}}
+                </ul>                
+            {{else}}
+            <p>Logueate para ver informacion</p>
+            {{/if}}
+          </ul>
+      </div>
+    </div>
+
+    <!-- Modals -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="signupform" action="/new-signup" method="post">
+            <div class="form-group">
+                <input type="text" name="signupemail" class="form-control" placeholder="Email" required>
+            </div>
+             <div class="form-group">
+                <input type="password" name="signuppassword" class="form-control" placeholder="Password" required>
+            </div>
+           <button class="btn btn-primary">sign Up</button>
+        </form>
+      </div>    
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="loginform" action="/new-signin" method="post">
+            <div class="form-group">
+                <input type="text" name="loginemail" class="form-control" placeholder="Email" >
+            </div>
+             <div class="form-group">
+                <input type="password" name="loginpassword" class="form-control" placeholder="Password" >
+            </div>
+           <button class="btn btn-secondary btn-block">Login</button>
+           <button name="botonlogingoogle" value="google_signin" class="btn btn-info btn-block" >Login con Google</button>
+        </form>
+      </div>    
+    </div>
+  </div>
+</div>
+    <div class="card">
+        <div class="card-header">
+            <h1>TAREAS</h1>
+        </div>
+        <div class="card-body">
+            {{#if contacts}}
+                <ul class="list-group">
+                    {{#each contacts}}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                            {{firstname}}
+                            {{lastname}} /
+                            {{email}} /
+                            {{phone}}
+                            <a href="/delete-contact/{{@key}}" class="btn btn-danger">
+                                Delete
+                            </a>
+                        </li>
+                    {{/each}}
+                </ul>                
+            {{else}}
+            <p>No contacts</p>
+            {{/if}}
+        </div>
+        <div class="card-footer">
+            <form action="/new-contact" method="post">
+                <div class="form-group">
+                    <input type="text" name="firstname" placeholder="FirstName" class="form-control" autofocus>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="lastname" placeholder="LastName" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <input type="text" name="email" placeholder="Email" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <input type="text" name="phone" placeholder="Phone" class="form-control" >
+                </div>
+                <button class="btn btn-primary btn-block">
+                    ADD
+                </button>                
+            </form>
+        </div>
+    </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">       
+            <!-- IMAGENES -->
+          </div>
+          <div class="col-sm-4">
+            <form id="formimages" action="/addImages" method="post">
+              <label class="btn btn-file">
+                <input type="file" name="fichero" value="" id="fichero" class="hidden">              
+              </label>
+                  <button class="btn btn-primary btn-block">
+                    ADD
+                </button>   
+            </form>           
+           </div>
+        </div>
+      </div>
+</div>
+
